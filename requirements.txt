@@ -1,3 +1,4 @@
+setuptools==47.3.1
 Werkzeug==1.0.1
 Cython== 0.29.20
 Flask>=1.0.0
