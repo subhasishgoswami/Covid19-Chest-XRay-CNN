@@ -71,7 +71,7 @@ def upload():
 
             # Arrange the correct return according to the model. 
     		# In this model 1 is Pneumonia and 0 is Normal.
-            str1 = 'Pneumonia'
+            str1 = 'Covid19 Positive'
             str2 = 'Normal'
             if preds == 1:
                 return str1
