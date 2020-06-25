@@ -68,18 +68,16 @@ def upload():
             # Make prediction
             preds = model_predict(file_path, model)
             os.remove(file_path)#removes file from the server after prediction has been returned
-
-            # Arrange the correct return according to the model. 
-    		# In this model 1 is Pneumonia and 0 is Normal.
-            str1 = 'Covid19 Positive'
-            str2 = 'Normal'
+        
+            str1 = 'Normal'
+            str2 = 'Covid19 Positive'
+            
             if preds == 1:
                 return str1
             else:
                 return str2
         return None
 
-    #this section is used by gunicorn to serve the app on Heroku
 if __name__ == '__main__':
         app.run(threaded = False)
 
