@@ -97,13 +97,11 @@ def upload():
             phone=request.form['phone']
             
             
-            
-
             # Make prediction
             preds = model_predict(file_path, model)
             os.remove(file_path)#removes file from the server after prediction has been returned
             result= False
-            str1 = 'Normal'
+            str1 = 'Covid19 Negative'
             str2 = 'Covid19 Positive'
             if preds == 1:
                 result= False
