@@ -8,7 +8,7 @@
 * Clone the repository
 * Install the dependencies using `pip install -r requirements.txt`
 * Run using `python app.py`
-
+### App is live at https://covid19-detection-cnn.herokuapp.com/
 <br>
 
 ### Authors
