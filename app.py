@@ -63,12 +63,30 @@ def close_db(error):
     if hasattr(g, 'sqlite_db'):
         g.sqlite_db.close()
 
+@app.route('/delete/<int:data_id>', methods=["DELETE","GET"])
+def delete(data_id):
+    db=get_db()
+    cur=db.execute('delete from data where id = ?',[data_id])
+    db.commit()
+    return redirect(url_for('data'))
+
 @app.route('/data')
 def data():
     db=get_db()
-    cur=db.execute('select username, phone, result from data')
+    cur=db.execute('select id, username, phone, result from data')
     results=cur.fetchall()
     return render_template('database.html', results=results)
+
+@app.route('/clear', methods=['DELETE',"GET"])
+def clear():
+    db=get_db()
+    cur=db.execute('select id, username, phone, result from data')
+    results=cur.fetchall()
+    for each in results:
+        cur=db.execute('delete from data where id = ?',[each['id']])
+        db.commit()
+    return redirect(url_for('data'))
+
 
 @app.route('/', methods=['GET'])
 def index():
@@ -81,12 +99,10 @@ def upload():
         if request.method == 'POST':
             # Get the file from post request
             if 'file' not in request.files:
-                flash('No file part')
-                return redirect(index.url)
+                return render_template('index.html')
             f = request.files['file']
             if f.filename == '':
-                flash('No selected file')
-                return redirect(index.url)
+                return render_template('index.html')
 
             # Save the file to ./uploads
             basepath = os.path.dirname(__file__)
