@@ -8,6 +8,50 @@
                 margin:0;
                 padding:0;
             }
+            a {
+                  text-decoration: none;
+                }
+
+                .navbar {
+                  background-color:rgb(0,0,0,0.5);
+                  opacity: 0.5;
+                  height: 50px;
+                  box-shadow: 0 10px 50px hsl(0, 0%, 90%);
+                }
+
+                .container {
+                  max-width: 98%;
+                  margin: 0 auto;
+                }
+
+                .logo a {
+                  float: left;
+                  padding: 20px;
+                  color: hsl(0, 0%, 40%);
+                }
+
+                .menu {
+                  float: right;
+                }
+
+                .menu li {
+                  list-style: none;
+                  display: inline-block;
+                }
+
+                .menu li a {
+                  
+                  font-size: 16px;
+                  padding: 0.5px 30px;
+                  color: white;
+                  float: left;
+                  transition: color .3s ease-in-out;
+                }
+
+                .menu li a:hover {
+                  color: black;
+                  transition: color .5s ease-in-out;
+                }
             body{
                 font-family:sans-serif;
                 margin:auto;
@@ -24,13 +68,17 @@
            
         </style>
     </head>
-    <body>
-       
-	       
-	       	   
-	       	   <h1>Test Results</h1>
+            <body> 	   
+	       	   <nav class="navbar">
+                      <div class="container">
+                            <ul class="menu">
+                                  <li><a href="{{url_for('index')}}">Home</a></li>
+                                  <li><a href="#">About</a></li>
+                                  <li><a href="{{url_for('data')}}">Data</a></li>
+                            </ul>
+                      </div>
+                </nav>
+               <h1>Test Results</h1>
 	       	   <h2>{% for  x in results %}<p>{{x.id}}  {{x.username}}  {{x.phone}}  {{x.result}}</p>{% endfor %}</h2>
-		       
-		 
-    </body>
+            </body>
 </html>
