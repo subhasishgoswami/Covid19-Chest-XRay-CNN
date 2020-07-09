@@ -79,6 +79,6 @@
                       </div>
                 </nav>
                <h1>Test Results</h1>
-	       	   <h2>{% for  x in results %}<p>{{x.id}}  {{x.username}}  {{x.phone}}  {{x.result}}</p>{% endfor %}</h2>
+	       	   <h2>{% for  x in results %}<p>{{x.id}}  {{x.username}}  {{x.phone}}  {% if(x.result==1) %}Covid Positive{% else %}Covid Negative{% endif %}</p>{% endfor %}</h2>
             </body>
 </html>
