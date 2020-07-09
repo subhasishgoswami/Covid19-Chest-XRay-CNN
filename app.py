@@ -119,7 +119,7 @@ def upload():
             name=request.form['name']
             phone=request.form['phone']
             if name == "":
-                name= unicode("Anonymous")
+                name= "Anonymous"
             if phone=='' or phone.isnumeric()==False:
                phone= ''.join(random.choice('0123456789') for i in range(5))
                phone= phone + "XXXXX"
