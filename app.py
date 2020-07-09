@@ -5,6 +5,7 @@ import os
 import glob
 import re
 import numpy as np
+import random
 
 # Keras
 from keras.models import load_model
@@ -114,8 +115,14 @@ def upload():
             file_path = os.path.join(
                 basepath, 'uploads', secure_filename(f.filename))
             f.save(file_path)
+
             name=request.form['name']
             phone=request.form['phone']
+            if name == "":
+                name= unicode("Anonymous")
+            if phone=='' or phone.isnumeric()==False:
+               phone= ''.join(random.choice('0123456789') for i in range(5))
+               phone= phone + "XXXXX"
             
             
             # Make prediction
@@ -133,9 +140,9 @@ def upload():
             db.commit()
             
             if preds == 1:
-                return render_template('result.html', name=request.form['name'], phone=request.form['phone'], result=str1)
+                return render_template('result.html', name=name, phone=phone, result=str1)
             else:
-                return render_template('result.html', name=request.form['name'], phone=request.form['phone'], result=str2)
+                return render_template('result.html', name=name, phone=phone, result=str2)
         return None
 
 if __name__ == '__main__':
