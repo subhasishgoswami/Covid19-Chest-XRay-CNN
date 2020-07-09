@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+         <style type="text/css">
+            @import "https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"
+            *{
+                margin:0;
+                padding:0;
+            }
+            a {
+                  text-decoration: none;
+                }
+
+                .navbar {
+                  background-color:rgb(0,0,0,0.5);
+                  opacity: 0.5;
+                  height: 50px;
+                  box-shadow: 0 10px 50px hsl(0, 0%, 90%);
+                }
+
+                .container {
+                  max-width: 98%;
+                  margin: 0 auto;
+                }
+
+                .logo a {
+                  float: left;
+                  padding: 20px;
+                  color: hsl(0, 0%, 40%);
+                }
+
+                .menu {
+                  float: right;
+                }
+
+                .menu li {
+                  list-style: none;
+                  display: inline-block;
+                }
+
+                .menu li a {
+                  
+                  font-size: 16px;
+                  padding: 0.5px 30px;
+                  color: white;
+                  float: left;
+                  transition: color .3s ease-in-out;
+                }
+
+                .menu li a:hover {
+                  color: green;
+                  transition: color .5s ease-in-out;
+                }
+
+            body{
+                font-family:sans-serif;
+                margin:auto;
+            }
+             header{
+                background-image:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url({{url_for('static', filename='bggif.gif')}});
+                height:200vh;
+                background-size:cover;
+                background-position:center;
+            }
+            footer-image {
+                max-width: 10%;
+                height:auto;
+            }
+            .login-box{
+                background-color:rgb(0,0,0,0.5);
+                width:1000px;
+                position:absolute;
+                margin-top: 50px;
+                left:50%;
+                transform:translate(-50%);
+                color:white;
+
+            }
+            .login-box h1{
+                float:center;
+                font-size:35px;
+                border-bottom:6px solid green;
+                margin-bottom:35px;
+                text-align: center;
+                padding:13px 0;
+                                
+            }
+
+            .login-box p{
+                 float:center;
+                 font-size:20px;
+                 padding-right: 80px;
+                 padding-left: 80px;
+
+              }
+
+            .login-box a{
+                 float:center;
+                 font-size:20px;
+                 padding-right: 80px;
+                 padding-left: 80px;
+                 color: white;
+
+              }
+              .login-box img{
+                 float: center;
+                 padding-left: 400px;
+                 padding-top: 40px;
+                 padding-top: 40px;
+                 margin-bottom: 40px;
+
+              }
+              .login-box img:hover{
+                 float: center;
+                 padding-left: 400px;
+                 padding-top: 40px;
+                 padding-top: 40px;
+                 margin-bottom: 40px;
+              }
+
+              .login-box a:hover{
+                 float:center;
+                 font-size:20px;
+                 padding-right: 80px;
+                 padding-left: 80px;
+                 color: green;
+
+              }
+
+            .login-box h2{
+                float:center;
+                font-size:31px;
+                margin-bottom:15px;
+                text-align: center;
+                padding:13px 0;
+            }
+            .login-box h3{
+                float:left;
+                color: green;
+                font-size:25px;
+                margin-bottom:20px;
+                margin-left:50px;
+                padding:1;
+            }
+            .textbox{
+                width:100%;
+                overflow: hidden;
+                font-size:20px;
+                padding:8px 0;
+                margin:8px 0;
+                border-bottom:1px solid green;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+           <nav class="navbar">
+          <div class="container">
+            <ul class="menu">
+              <li><a href="{{url_for('index')}}">Home</a></li>
+              <li><a href="{{url_for('about')}}">About</a></li>
+              <li><a href="{{url_for('data')}}">Data</a></li>
+            </ul>
+          </div>
+        </nav>
+	       <div class= "login-box">
+	       	   <h1>About The app</h1>
+             <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
+             <h2>Steps To Use The App</h2>
+             <p>* Enter Your Name, Contact Number and Lung X-Ray(In PA standing position) Image</p>
+             <p>* Check Your Result in the Results page</p>
+             <p>* Previously done test results can be checked in Data Page</p>
+             <p>* Instructions can be checked at About Page</p>
+             <h2>Authors</h2>
+             <a href="https://github.com/AnkitAgarwal98">Ankit Agarwala</a>
+             <br>
+             <a href="https://www.linkedin.com/in/shivangsu-x-nwal-29484417a/">Asurjya Handique</a>
+             <br>
+             <a href="https://www.linkedin.com/in/kaushik-kumar-bora-363952169/">Kaushik Kumar Bora</a>
+             <br>
+             <a href="https://github.com/rabijitsingh">Rabijit Singh</a>
+             <br>
+             <a href="https://github.com/subhasishgosw5">Subhasish Goswami</a>
+             <br>
+              <a href="https://github.com/adiXcodr/SafeMaps" target="_blank"><img src="{{ url_for('static', filename='rsz_github.png') }}" class= "footer-image" ></a>
+  
+             
+		   </div>
+       </header>
+    </body>
+</html>

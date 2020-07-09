@@ -93,6 +93,11 @@ def index():
     # Main page
     return render_template('index.html')
 
+@app.route('/about', methods=['GET'])
+def about():
+    # About page
+    return render_template('about.html')
+
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
