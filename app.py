@@ -1,5 +1,4 @@
 ﻿from __future__ import division, print_function
-# coding=utf-8
 import sys
 import os
 import glob
@@ -14,10 +13,14 @@ import keras.backend.tensorflow_backend as tb
 
 tb._SYMBOLIC_SCOPE.value = True
 
-# Flask utils
+#Database
 import sqlite3
+
+# Flask utils
 from flask import Flask, redirect, url_for, request, render_template,g
 from werkzeug.utils import secure_filename
+
+#For Heroku Server Web App
 from gevent.wsgi import WSGIServer
 
 # Define a flask app
@@ -27,7 +30,6 @@ app = Flask(__name__)
 MODEL_PATH = 'models/Covid.h5'
 
 #Load your trained model
-
 model = load_model(MODEL_PATH)
 model._make_predict_function()
 
@@ -49,6 +51,7 @@ def model_predict(img_path, model):
     return preds
 
 
+#Functions For Database
 def connect_db():
     sql = sqlite3.connect('data.db')
     sql.row_factory = sqlite3.Row
@@ -64,41 +67,12 @@ def close_db(error):
     if hasattr(g, 'sqlite_db'):
         g.sqlite_db.close()
 
-@app.route('/delete/<int:data_id>', methods=["DELETE","GET"])
-def delete(data_id):
-    db=get_db()
-    cur=db.execute('delete from data where id = ?',[data_id])
-    db.commit()
-    return redirect(url_for('data'))
 
-@app.route('/data')
-def data():
-    db=get_db()
-    cur=db.execute('select id, username, phone, result from data')
-    results=cur.fetchall()
-    return render_template('database.html', results=results)
-
-@app.route('/clear', methods=['DELETE',"GET"])
-def clear():
-    db=get_db()
-    cur=db.execute('select id, username, phone, result from data')
-    results=cur.fetchall()
-    for each in results:
-        cur=db.execute('delete from data where id = ?',[each['id']])
-        db.commit()
-    return redirect(url_for('data'))
-
-
+#App Routes
 @app.route('/', methods=['GET'])
 def index():
     # Main page
     return render_template('index.html')
-
-@app.route('/about', methods=['GET'])
-def about():
-    # About page
-    return render_template('about.html')
-
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
@@ -126,8 +100,8 @@ def upload():
             
             
             # Make prediction
-            preds = model_predict(file_path, model)
-            os.remove(file_path)#removes file from the server after prediction has been returned
+            preds = model_predict(file_path, model)    #Call Predict Function from model
+            os.remove(file_path) #removes file from the server after prediction has been returned
             result= False
             str1 = 'Covid19 Negative'
             str2 = 'Covid19 Positive'
@@ -145,6 +119,39 @@ def upload():
                 return render_template('result.html', name=name, phone=phone, result=str2)
         return None
 
+
+@app.route('/data')
+def data():
+    db=get_db()
+    cur=db.execute('select id, username, phone, result from data')
+    results=cur.fetchall()
+    return render_template('database.html', results=results)
+
+
+@app.route('/delete/<int:data_id>', methods=["DELETE","GET"])
+def delete(data_id):
+    db=get_db()
+    cur=db.execute('delete from data where id = ?',[data_id])
+    db.commit()
+    return redirect(url_for('data'))
+
+
+@app.route('/clear', methods=['DELETE',"GET"])
+def clear():
+    db=get_db()
+    cur=db.execute('select id, username, phone, result from data')
+    results=cur.fetchall()
+    for each in results:
+        cur=db.execute('delete from data where id = ?',[each['id']])
+        db.commit()
+    return redirect(url_for('data'))
+
+@app.route('/about', methods=['GET'])
+def about():
+    # About page
+    return render_template('about.html')
+
+#Flask Server
 if __name__ == '__main__':
         app.run(threaded = False)
 
