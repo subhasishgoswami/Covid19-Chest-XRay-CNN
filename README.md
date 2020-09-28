@@ -1,5 +1,6 @@
 <h1 align="center" >Covid19 Detection</h1>
 <h3 align="center">A web app to determine Covid19 from Lung X-Ray Images</h3>
+<h4 align="center">A covolutional neural neteork based approach to detect Covid19 from lung X-Ray images. Model trained on available data from public repositories and saved model has been used to make a web app to collect data from client.</h4>
 
 ## Data sets used
 * [Covid Chest X-Ray Images](https://github.com/ieee8023/covid-chestxray-dataset)
