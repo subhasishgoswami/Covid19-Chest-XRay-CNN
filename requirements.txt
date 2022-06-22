@@ -2,7 +2,7 @@
 Werkzeug==1.0.1
 Cython== 0.29.20
 Flask>=1.0.0
-numpy==1.16.6
+numpy==1.22.0
 Keras==2.3.1
 gevent==1.2.2
 pillow==7.1.0
