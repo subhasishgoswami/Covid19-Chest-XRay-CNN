@@ -1,5 +1,5 @@
 
-Werkzeug==1.0.1
+Werkzeug==2.2.3
 Cython== 0.29.20
 Flask>=1.0.0
 numpy==1.16.6
